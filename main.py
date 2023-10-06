@@ -32,14 +32,14 @@ app.include_router(auth_router, prefix='/auth')
 
 
 # 注册静态资源文件，将前端和后端项目整合运行
-# app.mount('/web', StaticFiles(directory='web/dist'), 'web')
+app.mount('/web', StaticFiles(directory='web/dist'), 'web')
 # app.mount('/h5', StaticFiles(directory='h5/dist'), 'h5')
 
 app.get('/')
 
 
 def toweb():
-    return RedirectResponse('/web/index.html')
+    return RedirectResponse('/web1/index.html')
 
 
 generate_tables()
