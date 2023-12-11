@@ -7,7 +7,7 @@ from app.database import get_db, SessionLocal
 from app.setting import *
 from utils.password import get_password_hash, verify_password
 from utils.token import extract_token
-from models import UserInDB
+from .models import UserInDB
 from .schemas import UserCreate
 
 

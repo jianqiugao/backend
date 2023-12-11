@@ -8,5 +8,5 @@ AUTH_INIT_USER = 'admin'
 AUTH_INIT_PASSWORD = 'admin'
 DB_HOST = 'localhost'
 DB_USER_NAME = 'root'
-DB_PASSWORD = parse.quote('123456')
+DB_PASSWORD = parse.quote('123456') # 把字符串编码
 DB_DATABASE = 'nucleic'

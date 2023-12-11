@@ -31,6 +31,7 @@ class QueryParams:
 
 # 保存登记数据
 def save_checkin(db: Session, data: CheckIn):
+    # 把padatic里面的数据转换到CheckInDB，然后再执行add,commit,refresh等操作
     dbdata = CheckInDB(person_id=data.person_id,
                        bqbh=data.bqbh,
                        bqxh=data.bqxh,
