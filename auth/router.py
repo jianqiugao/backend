@@ -11,7 +11,7 @@ from .services import authenticate_user, get_user, create_user, get_current_user
 route = APIRouter(tags=['登录'])  # 在API文档中定义当前应用路由的标签
 
 
-@route.post("/login", response_model=Token) # 把这个接口绑定上是为了每访问一下这个就
+@route.post("/login", response_model=Token)  # 把这个接口绑定上是为了每访问一下这个就
 async def login(form: OAuth2PasswordRequestForm = Depends(),
                 db: Session = Depends(get_db)):
     user = authenticate_user(db, form.username, form.password)

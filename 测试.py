@@ -18,6 +18,22 @@ import uvicorn
 #     print(data)
 #
 # func('2345')
-from 测试1 import data
+from passlib.context import CryptContext
 
-print(data)
+_pwd_contex = CryptContext(schemes=['bcrypt'], deprecated="auto")
+
+
+def verify_password(plain_password, hashed_password):
+    return _pwd_contex.verify(plain_password, hashed_password)
+
+
+def get_password_hash(plain_password):
+    return _pwd_contex.hash(plain_password)
+
+
+if __name__ == '__main__':
+    password = 'data2321'
+    hased_password = get_password_hash(password)
+    print(hased_password)
+    res = verify_password(password,hased_password)
+    print(res)

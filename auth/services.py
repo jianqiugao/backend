@@ -7,18 +7,18 @@ from app.database import get_db, SessionLocal
 from app.setting import *
 from utils.password import get_password_hash, verify_password
 from utils.token import extract_token
-from .models import UserInDB
+from models import UserInDB
 from .schemas import UserCreate
 
 
 # 创建初始管理员账号
 def init_admin_user():
-    db = SessionLocal()
-    cnt = db.query(func.count(UserInDB.username)).scalar()
+    db = SessionLocal() # 创建事务
+    cnt = db.query(func.count(UserInDB.username)).scalar() # 传递聚合函数
     if cnt == 0:
         user = UserInDB(username=AUTH_INIT_USER, hashed_password=get_password_hash(AUTH_INIT_PASSWORD))
-        db.add(user)
-        db.commit()
+        db.add(user)  # 通过add进行添加
+        db.commit()  # 提交事务
     db.close()
 
 
