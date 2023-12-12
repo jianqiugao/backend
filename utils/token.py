@@ -11,6 +11,8 @@ def create_token(data: dict):
     expires_delta = datetime.timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     expire = datetime.datetime.now() + expires_delta
     print(expire)
+    expire = expire.timestamp()  # 转换为东八区的时间戳，不然会转换为utc的时间戳
+
     to_encode.update({'exp': expire})
     encode_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encode_jwt
@@ -20,8 +22,9 @@ def extract_token(token: str):
     payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])  # 采用解密算法把token中的信息解密出来
     import time
     time_ = float(payload.get('exp'))
-    local_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time_))
-    print(local_time)
+    print(time_)
+    beijing_timestamp = datetime.datetime.fromtimestamp(time_)  # .timestamp()
+    print(beijing_timestamp)
     return payload.get('username')
 
 

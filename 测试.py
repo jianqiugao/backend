@@ -113,8 +113,9 @@ session.commit()
 
 # 查询数据
 user = session.query(User).filter(User.name=='John Doe').first()
-print(user.name, user.email)
-
+print(user.name, user.email, user.id)
+user = session.query(Course).filter(Course.student_id == user.id).first()
+print(user.name)
 # 更新数据
 user.email = 'new_email@example.com'
 session.commit()
@@ -144,3 +145,17 @@ session.commit()
 #
 # engine = create_engine('sqlite:///mydatabase.db', echo=True)
 # Base.metadata.create_all(engine)
+
+# openssl rand -hex 32 在cmd中随机生成一个32位的SECRET_KEY
+# 80aa2026d1717a85ad0b94d19ad4adfb551b11577e0197ec00b9b2c34b13c9ad
+str = '80aa2026d1717a85ad0b94d19ad4adfb551b11577e0197ec00b9b2c34b13c9ad' # 为什么会有64位
+import base64
+str = b'who is your dad'
+str = base64.b64encode(str)
+str = base64.b64decode(str)
+print(str)
+print(len(str))
+import datetime
+
+print(datetime.datetime.utcnow())
+print(datetime.datetime.now())
